@@ -1,2 +1,2 @@
-youtube/node_modules
-.idea
+/youtube/node_modules/
+.idea/
