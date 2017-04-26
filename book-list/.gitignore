@@ -1,6 +1,7 @@
 /node_modules
 blog/node_modules
 weather/node_modules
+youtube/node_modules
 bundle.js
 npm-debug.log
 .DS_Store
