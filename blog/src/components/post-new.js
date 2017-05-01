@@ -2,11 +2,58 @@
  * Created by nbasiri on 27/04/2017.
  */
 import React, {Component} from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPost } from '../actions';
 
 class PostNew extends Component{
+
+    renderField(field){
+        const {meta} = field;
+        const formClass = `form-group ${meta.touched && meta.error ? 'has-danger': ''}`;
+        return(
+            <div className={formClass}>
+                <label>{field.label}</label>
+                <input className="form-control" type="text" {...field.input}/>
+                <div className="text-help">{meta.touched ? meta.error: ''}  </div>
+
+            </div>
+        );
+    }
+
+    onSubmit(values){
+
+        this.props.createPost(values, () => {
+            this.props.history.push('/');
+        });
+    }
+
     render(){
-        return (<div>Post new</div>);
+        const {handleSubmit} = this.props;
+        return (<form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+            <Field label="Title" name="title" component={this.renderField}/>
+            <Field label="Categories" name="categories" component={this.renderField}/>
+            <Field label="Post Content" name="content" component={this.renderField}/>
+            <button type="submit" className="btn btn-primary">Submit</button>
+            <Link to="/" className="btn btn-danger">Cancel</Link>
+
+        </form>);
+
     }
 }
 
-export default PostNew;
+function validate(values){
+    const errors = {};
+
+    if(!values.title){
+        errors.title = 'Enter a title!'
+    }
+    return errors;
+}
+export default reduxForm({
+    validate,
+    form: 'PostNewForm'
+})(
+    connect(null, { createPost })(PostNew)
+);
