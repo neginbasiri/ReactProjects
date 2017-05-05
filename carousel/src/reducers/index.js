@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import ItemReducer from './reducer_item';
+import CarouselReducer from './reducer_carousel';
 
 
 const rootReducer = combineReducers({
-    item: ItemReducer
+    item: CarouselReducer
 });
 
 export default rootReducer;
