@@ -3,3 +3,4 @@ book-list/node_modules
 weather/node_modules
 blog/node_modules
 .idea
+npm-debug.log
