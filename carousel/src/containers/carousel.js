@@ -24,26 +24,32 @@ class Carousel extends Component{
     renderItem(){
         const  {item} = this.props;
 
+
         return(
-            <div className="carousel__item" key={item.id}>
-                <img src={item.imageurl}/>
-                <div className="carousel__text">
-                    <h3>{item.title}</h3>
-                    <p>{item.synopsis}</p>
-                    <a href={item.link}>{item.link}</a>
+
+                <div className="carousel__item" key={item.id}>
+                    <img src={item.imageurl}/>
+                    <div className="carousel__text">
+                        <h3>{item.title}</h3>
+                        <p>{item.synopsis}</p>
+                        <a href={item.link}>{item.link}</a>
+                    </div>
                 </div>
 
-            </div>
         )
 
     }
     render(){
+
+
         return(
-            <div className="carousel">
-                {this.renderItem()}
-                <div className="carousel__prev" onClick={this.previous.bind(this)}>Previous</div>
-                <div className="carousel__next" onClick={this.next.bind(this)}>Next</div>
-            </div>
+
+                <div className="carousel">
+                    {this.renderItem()}
+                    <div className="carousel__prev" onClick={this.previous.bind(this)}>Previous</div>
+                    <div className="carousel__next" onClick={this.next.bind(this)}>Next</div>
+                </div>
+
         )
     }
 }
