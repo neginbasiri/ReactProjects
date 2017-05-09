@@ -1,25 +1,29 @@
 /**
  * Created by nbasiri on 5/05/2017.
  */
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {nextItem} from '../actions';
-import {bindActionCreators} from 'redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { prevItem, nextItem, initItem } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 class Carousel extends Component{
 
     previous(){
-        const {id} = this.props.item;
-        console.log('prev clicked', id);
+        this.props.prevItem();
     }
 
     next(){
-        const {id} = this.props.item;
-        nextItem(id);
+        this.props.nextItem();
+    }
+
+
+    componentDidMount(){
+        this.props.initItem();
     }
 
     renderItem(){
         const  {item} = this.props;
+
         return(
             <div className="carousel__item" key={item.id}>
                 <img src={item.imageurl}/>
@@ -45,11 +49,15 @@ class Carousel extends Component{
 }
 
 function mapStateToProps(state){
-    return {item: state.item}
+    return {item: state.item};
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({nextItem: nextItem}, dispatch)
+    return bindActionCreators({
+        initItem: initItem,
+        nextItem: nextItem,
+        prevItem: prevItem
+    }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Carousel);

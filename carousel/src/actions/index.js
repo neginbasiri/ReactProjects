@@ -1,20 +1,24 @@
-const NEXT_ITEM = 'NEXT_ITEM';
-const PREV_ITEM = 'PREV_ITEM';
+export const NEXT_ITEM = 'NEXT_ITEM';
+export const INIT_ITEM  = 'INIT_ITEM';
+export const PREV_ITEM = 'PREV_ITEM';
 
-
-export function nextItem(id){
+export function nextItem(){
 
     return{
-        type: NEXT_ITEM,
-        payload: id
+        type: NEXT_ITEM
     };
 }
 
-export function prevItem(id){
+export function initItem(){
 
-    return{
-        type: PREV_ITEM,
-        payload: id
-    };
+    return {
+        type: INIT_ITEM
+    }
 }
 
+export function prevItem(){
+
+    return {
+        type: PREV_ITEM
+    }
+}

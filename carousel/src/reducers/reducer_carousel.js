@@ -3,20 +3,24 @@
  */
 
 import data from '../data.json';
-import _ from 'lodash';
-import{ NEXT_ITEM, PREV_ITEM } from '../actions';
+import{ PREV_ITEM, NEXT_ITEM, INIT_ITEM } from '../actions/index';
 
-export default function(state = null, action){
+export default function(state = {}, action){
 
-    const init = _.head(data.carousel);
+    const carousel = data.carousel;
+    let index = Math.max(0, carousel.indexOf(state));
 
     switch(action.type){
-        case 'NEXT_ITEM':
-            return
-        case 'PREV_ITEM':
-            return
-
+        case INIT_ITEM:
+            return carousel[index];
+        case NEXT_ITEM:
+            index = Math.min(index + 1, carousel.length - 1);
+            return carousel[index];
+        case PREV_ITEM:
+            index = Math.max(index - 1, 0);
+            return carousel[index];
     }
-    return init;
+
+    return state;
 };
 
