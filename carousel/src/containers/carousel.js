@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { prevItem, nextItem, initItem } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
+
 class Carousel extends Component{
 
     previous(){
@@ -23,16 +24,17 @@ class Carousel extends Component{
 
     renderItem(){
         const  {item} = this.props;
+        const webLink = `http://${item.link}`;
 
 
         return(
 
                 <div className="carousel__item" key={item.id}>
-                    <img src={item.imageurl}/>
+                    <img className="carousel__image" src={item.imageurl}/>
                     <div className="carousel__text">
                         <h3>{item.title}</h3>
                         <p>{item.synopsis}</p>
-                        <a href={item.link}>{item.link}</a>
+                        <a href={webLink} target="_black">{item.link}</a>
                     </div>
                 </div>
 
@@ -46,8 +48,12 @@ class Carousel extends Component{
 
                 <div className="carousel">
                     {this.renderItem()}
-                    <div className="carousel__prev" onClick={this.previous.bind(this)}>Previous</div>
-                    <div className="carousel__next" onClick={this.next.bind(this)}>Next</div>
+                    <div className="carousel__prev" onClick={this.previous.bind(this)}>
+                        <i className="fa fa-chevron-left"></i>
+                    </div>
+                    <div className="carousel__next" onClick={this.next.bind(this)}>
+                        <i className="fa fa-chevron-right"></i>
+                    </div>
                 </div>
 
         )
