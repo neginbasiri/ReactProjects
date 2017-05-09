@@ -14,10 +14,10 @@ export default function(state = {}, action){
         case INIT_ITEM:
             return carousel[index];
         case NEXT_ITEM:
-            index = Math.min(index + 1, carousel.length - 1);
+            index = (index + 1) % carousel.length;
             return carousel[index];
         case PREV_ITEM:
-            index = Math.max(index - 1, 0);
+            index = (index > 0)?(index - 1) % carousel.length:(index + carousel.length - 1) % carousel.length;
             return carousel[index];
     }
 
