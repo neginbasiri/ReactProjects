@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { prevItem, nextItem, initItem } from '../actions/index';
 import { bindActionCreators } from 'redux';
-
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 class Carousel extends Component{
 
@@ -25,10 +25,15 @@ class Carousel extends Component{
     renderItem(){
         const  {item} = this.props;
         const webLink = `http://${item.link}`;
+        const transitionOptions = {
+            transitionName: 'slide',
+            transitionEnterTimeout: 1000,
+            transitionLeaveTimeout: 1000
+        };
 
 
         return(
-
+            <CSSTransitionGroup {...transitionOptions}>
                 <div className="carousel__item" key={item.id}>
                     <img className="carousel__image" src={item.imageurl}/>
                     <div className="carousel__text">
@@ -37,7 +42,7 @@ class Carousel extends Component{
                         <a href={webLink} target="_black">{item.link}</a>
                     </div>
                 </div>
-
+            </CSSTransitionGroup>
         )
 
     }
