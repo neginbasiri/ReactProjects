@@ -1,6 +1,7 @@
 youtube/node_modules
 book-list/node_modules
 weather/node_modules
+carousel/node_modules
 blog/node_modules
 .idea
 npm-debug.log
